@@ -10,7 +10,7 @@ const connectDB = async () => {
     });
 
     console.log(
-      chalk.white.bgMagenta.bold`MongoDB Connected: ${conn.connection.host}`
+      chalk.whiteBright.bgBlue.bold`MongoDB Connected: ${conn.connection.host}`
     );
   } catch (error) {
     console.error(chalk.red.bold.underline`Error: ${error.message}`);
