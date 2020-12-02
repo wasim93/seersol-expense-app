@@ -9,7 +9,7 @@ function App() {
       <Header />
       <main className='py-3'>
         <Container>
-          <h1>Welcome to MyShop</h1>
+          <h1>Expense Manager</h1>
         </Container>
       </main>
       <Footer />
