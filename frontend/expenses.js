@@ -1,4 +1,4 @@
-const transactions = [
+const entries = [
   {
     title: 'lunch',
     amount: 100,
@@ -36,4 +36,4 @@ const transactions = [
   },
 ];
 
-export default transactions;
+export default entries;
