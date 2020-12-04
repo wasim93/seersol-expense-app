@@ -22,4 +22,12 @@ const addExpense = expressAsyncHandler(async (req, res) => {
   }
 });
 
-export { addExpense };
+// @desc    Get all expenses
+// @route   GET /api/expenses
+// @access  Private
+const getExpenses = expressAsyncHandler(async (req, res) => {
+  const expenses = await Expense.find({});
+  res.json(expenses);
+});
+
+export { addExpense, getExpenses };
