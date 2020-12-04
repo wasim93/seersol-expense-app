@@ -30,7 +30,7 @@ const Expense = () => {
             </Form.Group>
           </Col>
           <Col className='justify-content-center'>
-            <Button variant='primary' type='submit' size='md'>
+            <Button variant='primary' type='submit'>
               Submit
             </Button>
           </Col>
@@ -40,9 +40,7 @@ const Expense = () => {
       <Table striped bordered hover size='sm'>
         <thead>
           <tr>
-            <th>
-              <strong>Description</strong>
-            </th>
+            <th>Description</th>
             <th>Amount</th>
             <th>Paid By</th>
           </tr>

@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import chalk from 'chalk';
+import expenseRoutes from './routes/expenseRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
@@ -17,6 +18,7 @@ app.get('/', (req, res) => {
   res.send('API is running...');
 });
 
+app.use('/api/expenses', expenseRoutes);
 app.use('/api/users', userRoutes);
 
 app.use(notFound);
