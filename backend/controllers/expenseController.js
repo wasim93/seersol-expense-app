@@ -44,4 +44,29 @@ const deleteExpense = expressAsyncHandler(async (req, res) => {
   }
 });
 
-export { addExpense, getExpenses, deleteExpense };
+// @desc    Update Expense
+// @route   PUT /api/expenses/:id
+// @access  Private
+const updateExpense = expressAsyncHandler(async (req, res) => {
+  const expense = await Expense.findById(req.params.id);
+
+  if (expense) {
+    expense.description = req.body.description || expense.description;
+    expense.amount = req.body.amount || expense.amount;
+    expense.paidBy = req.body.paidBy;
+
+    const updatedExpense = await expense.save();
+
+    res.json({
+      _id: updatedExpense._id,
+      description: updatedExpense.description,
+      amount: updatedExpense.amount,
+      paidBy: updatedExpense.paidBy,
+    });
+  } else {
+    res.status(404);
+    throw new Error('Expense not found');
+  }
+});
+
+export { addExpense, getExpenses, deleteExpense, updateExpense };
