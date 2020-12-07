@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Table, Row, Col, Form, Button } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
 
 const Expense = () => {
   const [description, setDescription] = useState('');
@@ -87,11 +86,9 @@ const Expense = () => {
               <td>{expense.amount}</td>
               <td>{expense.paidBy}</td>
               <td>
-                <LinkContainer to={``}>
-                  <Button variant='primary' className='btn-sm'>
-                    <i className='fas fa-edit'></i>
-                  </Button>
-                </LinkContainer>{' '}
+                <Button variant='primary' className='btn-sm'>
+                  <i className='fas fa-edit'></i>
+                </Button>{' '}
                 <Button variant='danger' className='btn-sm' onClick=''>
                   <i className='fas fa-trash'></i>
                 </Button>

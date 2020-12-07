@@ -30,4 +30,18 @@ const getExpenses = expressAsyncHandler(async (req, res) => {
   res.json(expenses);
 });
 
-export { addExpense, getExpenses };
+// @desc    Delete Expense
+// @route   DELETE /api/expenses/:id
+// @access  Private
+const deleteExpense = expressAsyncHandler(async (req, res) => {
+  const expense = await Expense.findById(req.params.id);
+  if (expense) {
+    await expense.remove();
+    res.json({ message: 'Expense Deleted' });
+  } else {
+    res.status(404);
+    throw new Error('Expense not found');
+  }
+});
+
+export { addExpense, getExpenses, deleteExpense };
