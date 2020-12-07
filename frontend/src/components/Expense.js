@@ -8,7 +8,6 @@ const Expense = () => {
   const [paidBy, setPaidBy] = useState('');
 
   const [expense, setExpense] = useState([]);
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const getExpenses = async () => {
     const { data } = await axios.get('/api/expenses');
@@ -17,12 +16,20 @@ const Expense = () => {
 
   useEffect(() => {
     getExpenses();
-  }, [isSubmitted]);
+  }, []);
 
   const submitHandler = async (e) => {
     e.preventDefault();
     await axios.post('/api/expenses', { description, amount, paidBy });
-    setIsSubmitted(true);
+    setDescription('');
+    setAmount('');
+    setPaidBy('');
+    getExpenses();
+  };
+
+  const deleteHandler = async (id) => {
+    await axios.delete(`/api/expenses/${id}`);
+    getExpenses();
   };
 
   return (
@@ -89,7 +96,11 @@ const Expense = () => {
                 <Button variant='primary' className='btn-sm'>
                   <i className='fas fa-edit'></i>
                 </Button>{' '}
-                <Button variant='danger' className='btn-sm' onClick=''>
+                <Button
+                  variant='danger'
+                  className='btn-sm'
+                  onClick={() => deleteHandler(expense._id)}
+                >
                   <i className='fas fa-trash'></i>
                 </Button>
               </td>
