@@ -6,8 +6,9 @@ const Expense = () => {
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
   const [paidBy, setPaidBy] = useState('');
-
+  const [isEdit, setIsEdit] = useState(false);
   const [expense, setExpense] = useState([]);
+  const [selectedPostId, setSelectedPostId] = useState(null);
 
   const getExpenses = async () => {
     const { data } = await axios.get('/api/expenses');
@@ -32,9 +33,29 @@ const Expense = () => {
     getExpenses();
   };
 
+  const editHandler = (id) => {
+    const filteredExpense = expense.filter((expense) => expense._id === id);
+    console.log(filteredExpense[0]);
+    setIsEdit(true);
+    setDescription(filteredExpense[0].description);
+    setAmount(filteredExpense[0].amount);
+    setPaidBy(filteredExpense[0].paidBy);
+    setSelectedPostId(filteredExpense[0]._id);
+  };
+
+  const updateHandler = async (e) => {
+    e.preventDefault();
+    const updatedExpense = { description, amount, paidBy };
+    await axios.put(`/api/expenses/${selectedPostId}`, updatedExpense);
+    setDescription('');
+    setAmount('');
+    setPaidBy('');
+    getExpenses();
+  };
+
   return (
     <div>
-      <Form onSubmit={submitHandler}>
+      <Form onSubmit={isEdit ? updateHandler : submitHandler}>
         <Row>
           <Col md={4}>
             <Form.Group controlId='description'>
@@ -52,7 +73,7 @@ const Expense = () => {
               <Form.Label>Amount</Form.Label>
               <Form.Control
                 value={amount}
-                type='text'
+                type='number'
                 placeholder='Enter Amount'
                 onChange={(e) => setAmount(e.target.value)}
               />
@@ -70,8 +91,12 @@ const Expense = () => {
             </Form.Group>
           </Col>
           <Col className='justify-content-center'>
-            <Button variant='primary' type='submit'>
-              Submit
+            <Button
+              variant='primary'
+              type='submit'
+              // disabled={!description.length || !amount.length || !paidBy.length}
+            >
+              {isEdit ? 'Update' : 'Add'}
             </Button>
           </Col>
         </Row>
@@ -93,7 +118,11 @@ const Expense = () => {
               <td>{expense.amount}</td>
               <td>{expense.paidBy}</td>
               <td>
-                <Button variant='primary' className='btn-sm'>
+                <Button
+                  variant='primary'
+                  className='btn-sm'
+                  onClick={() => editHandler(expense._id)}
+                >
                   <i className='fas fa-edit'></i>
                 </Button>{' '}
                 <Button
