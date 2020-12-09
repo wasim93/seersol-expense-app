@@ -112,11 +112,14 @@ const Expense = () => {
             <Form.Group controlId='paidBy'>
               <Form.Label>Paid By</Form.Label>
               <Form.Control
-                type='text'
+                as='select'
                 value={paidBy}
-                placeholder='Paid By'
                 onChange={(e) => setPaidBy(e.target.value)}
-              />
+              >
+                <option>Select</option>
+                <option value='Amir'>Amir</option>
+                <option value='Hammad'>Hammad</option>
+              </Form.Control>
             </Form.Group>
           </Col>
           <Col className='justify-content-center'>
@@ -124,7 +127,7 @@ const Expense = () => {
               className='my-3'
               variant='primary'
               type='submit'
-              // disabled={!description.length || !amount.length || !paidBy.length}
+              disabled={!description || !amount || !paidBy}
             >
               {isEdit ? 'Update' : 'Add'}
             </Button>
@@ -153,14 +156,14 @@ const Expense = () => {
                 <td>{moment(expense.createdAt).format('Do-MMM-YY')}</td>
                 <td>
                   <Button
-                    variant='outline-primary'
+                    variant='primary'
                     className='btn-sm'
                     onClick={() => editHandler(expense._id)}
                   >
                     <i className='fas fa-edit'></i>
                   </Button>{' '}
                   <Button
-                    variant='outline-danger'
+                    variant='danger'
                     className='btn-sm'
                     onClick={() => deleteHandler(expense._id)}
                   >

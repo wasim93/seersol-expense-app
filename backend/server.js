@@ -24,7 +24,9 @@ app.use(
       ' ' +
       chalk.green(tokens.url(req, res)) +
       ' ' +
-      chalk.red(tokens['response-time'](req, res))
+      chalk.red(tokens['response-time'](req, res)) +
+      ' ' +
+      chalk.magenta(tokens.date(req, res))
     );
   })
 );
