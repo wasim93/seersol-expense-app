@@ -116,7 +116,9 @@ const Expense = () => {
                 value={paidBy}
                 onChange={(e) => setPaidBy(e.target.value)}
               >
-                <option>Select</option>
+                <option value='' hidden>
+                  Select
+                </option>
                 <option value='Amir'>Amir</option>
                 <option value='Hammad'>Hammad</option>
               </Form.Control>
