@@ -26,8 +26,16 @@ const addExpense = expressAsyncHandler(async (req, res) => {
 // @route   GET /api/expenses
 // @access  Private
 const getExpenses = expressAsyncHandler(async (req, res) => {
-  const expenses = await Expense.find({});
-  res.json(expenses);
+  const pageSize = 5;
+  const page = Number(req.query.pageNumber) || 1;
+  const count = await Expense.countDocuments({});
+
+  const expenses = await Expense.find({})
+    .sort({ createdAt: -1 })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+
+  res.json({ expenses, page, pages: Math.ceil(count / pageSize) });
 });
 
 // @desc    Delete Expense

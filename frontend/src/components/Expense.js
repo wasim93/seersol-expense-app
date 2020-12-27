@@ -9,8 +9,9 @@ import ToastContainer, {
   updateNotify,
   deleteNotify,
 } from '../assets/Toaster';
+import Paginate from '../components/Paginate';
 
-const Expense = () => {
+const Expense = ({ match }) => {
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
   const [paidBy, setPaidBy] = useState('');
@@ -18,16 +19,21 @@ const Expense = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [expense, setExpense] = useState([]);
   const [selectedPostId, setSelectedPostId] = useState(null);
+  const [page, setPage] = useState('');
+  const [pages, setPages] = useState('');
+  const pageNumber = match.params.pageNumber || 1;
 
   const getExpenses = async () => {
-    const { data } = await axios.get('/api/expenses');
-    setExpense(data);
+    const { data } = await axios.get(`/api/expenses?pageNumber=${pageNumber}`);
+    setExpense(data.expenses);
+    setPage(data.page);
+    setPages(data.pages);
     setIsLoading(false);
   };
 
   useEffect(() => {
     getExpenses();
-  }, []);
+  }, [page, match]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -177,6 +183,8 @@ const Expense = () => {
           </tbody>
         </Table>
       )}
+
+      <Paginate pages={pages} page={page} />
     </div>
   );
 };

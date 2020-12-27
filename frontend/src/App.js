@@ -15,6 +15,7 @@ function App() {
           <h1 className='text-center'>Expense Manager</h1>
           <hr />
           <Route path='/' component={HomeScreen} exact />
+          <Route path='/page/:pageNumber' component={HomeScreen} exact />
           <Route path='/login' component={LoginScreen} exact />
         </Container>
       </main>
