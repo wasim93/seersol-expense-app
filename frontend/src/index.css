@@ -33,3 +33,20 @@ h2 {
 .rating span {
   margin: 0.1rem;
 }
+
+.login-screen {
+  width: 30%;
+  height: 60vh;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgb(241, 236, 236);
+  border-radius: 8px;
+}
+
+.login-btn {
+  margin-top: 15px;
+  width: 100%;
+}

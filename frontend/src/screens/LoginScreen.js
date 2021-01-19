@@ -30,7 +30,7 @@ const LoginScreen = ({ history }) => {
   };
 
   return (
-    <div>
+    <div className='login-screen'>
       <h1>Sign In</h1>
       {error && <Message variant='danger'>{error}</Message>}
 
@@ -55,7 +55,7 @@ const LoginScreen = ({ history }) => {
           ></Form.Control>
         </Form.Group>
 
-        <Button type='submit' variant='primary'>
+        <Button className='login-btn' type='submit' variant='primary'>
           Sign In
         </Button>
       </Form>

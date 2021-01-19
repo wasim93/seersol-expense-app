@@ -1,0 +1,8 @@
+POST http://127.0.0.1:5000/api/users/login
+content-type: application/json
+
+{
+    "email": "wasim@seersol.com",
+    "password": "123456"
+}
+
