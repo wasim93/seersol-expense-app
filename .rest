@@ -6,3 +6,12 @@ content-type: application/json
     "password": "123456"
 }
 
+###
+
+POST http://127.0.0.1:5000/api/users
+content-type: application/json
+
+{   "name" : "Ali Khan"
+    "email": "ali@seersol.com",
+    "password": "123456"
+}

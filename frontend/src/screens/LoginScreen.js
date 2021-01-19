@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import Message from '../components/Message';
-import { Form, Button } from 'react-bootstrap';
 
 const LoginScreen = ({ history }) => {
   const [email, setEmail] = useState('');
@@ -33,7 +34,6 @@ const LoginScreen = ({ history }) => {
     <div className='login-screen'>
       <h1>Sign In</h1>
       {error && <Message variant='danger'>{error}</Message>}
-
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='email'>
           <Form.Label>Email Address</Form.Label>
@@ -59,6 +59,12 @@ const LoginScreen = ({ history }) => {
           Sign In
         </Button>
       </Form>
+
+      <Row className='py-3'>
+        <Col>
+          Don't have an account? <Link to={'/register'}>Register</Link>
+        </Col>
+      </Row>
     </div>
   );
 };
