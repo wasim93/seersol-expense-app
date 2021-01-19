@@ -13,23 +13,21 @@ connectDB();
 
 const app = express();
 
-// if (process.env.NODE_ENV === 'DEVELOPMENT') {
-//   app.use(morgan('dev'));
-// }
-
-app.use(
-  morgan(function (tokens, req, res) {
-    return (
-      chalk.blue(tokens.method(req, res)) +
-      ' ' +
-      chalk.green(tokens.url(req, res)) +
-      ' ' +
-      chalk.red(tokens['response-time'](req, res)) +
-      ' ' +
-      chalk.magenta(tokens.date(req, res))
-    );
-  })
-);
+if (process.env.NODE_ENV === 'DEVELOPMENT') {
+  app.use(
+    morgan(function (tokens, req, res) {
+      return (
+        chalk.blue(tokens.method(req, res)) +
+        ' ' +
+        chalk.green(tokens.url(req, res)) +
+        ' ' +
+        chalk.red(tokens['response-time'](req, res)) +
+        ' ' +
+        chalk.magenta(tokens.date(req, res))
+      );
+    })
+  );
+}
 
 app.use(express.json());
 

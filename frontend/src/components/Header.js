@@ -1,17 +1,21 @@
 import React, { useEffect } from 'react';
 import { Nav, Navbar, Container, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 const Header = () => {
   const userInfoFromStorage = localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo'))
     : null;
 
+  const history = useHistory();
+
   useEffect(() => {}, [userInfoFromStorage]);
 
   const logoutHandler = () => {
     localStorage.removeItem('userInfo');
-    document.location.href = '/login';
+    history.push('/login');
+    window.location.reload();
   };
   return (
     <header>

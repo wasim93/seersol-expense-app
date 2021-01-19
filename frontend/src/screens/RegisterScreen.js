@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import { Form, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import Message from '../components/Message';
 
-const RegisterScreen = ({ location, history }) => {
+const RegisterScreen = ({ history }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,11 +32,10 @@ const RegisterScreen = ({ location, history }) => {
       }
     }
   };
-  //   useEffect(() => {}, [history]);
 
   return (
     <div className='register-screen'>
-      <h1>Sign Up</h1>
+      <h1>Register</h1>
       {message && <Message variant='danger'>{message}</Message>}
       {error && <Message variant='danger'>{error}</Message>}
       <Form onSubmit={submitHandler}>
@@ -87,6 +87,11 @@ const RegisterScreen = ({ location, history }) => {
           Register
         </Button>
       </Form>
+      <Row className='py-3'>
+        <Col>
+          Already have an account? <Link to={'/login'}>Sign In</Link>
+        </Col>
+      </Row>
     </div>
   );
 };

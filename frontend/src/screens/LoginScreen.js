@@ -25,6 +25,7 @@ const LoginScreen = ({ history }) => {
       );
       localStorage.setItem('userInfo', JSON.stringify(data));
       history.push('/');
+      window.location.reload();
     } catch (error) {
       setError(error.response.data.message);
     }
