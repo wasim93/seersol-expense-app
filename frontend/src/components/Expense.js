@@ -10,6 +10,7 @@ import ToastContainer, {
   deleteNotify,
 } from '../assets/Toaster';
 import Paginate from '../components/Paginate';
+import TotalExpense from './TotalExpense';
 
 const Expense = ({ match }) => {
   const [description, setDescription] = useState('');
@@ -183,7 +184,7 @@ const Expense = ({ match }) => {
           </tbody>
         </Table>
       )}
-
+      <TotalExpense expense={expense} />
       <Paginate pages={pages} page={page} />
     </div>
   );
