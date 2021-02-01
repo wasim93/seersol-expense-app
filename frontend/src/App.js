@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
+import AboutScreen from './screens/AboutScreen';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='/page/:pageNumber' component={HomeScreen} exact />
           <Route path='/login' component={LoginScreen} exact />
           <Route path='/register' component={RegisterScreen} exact />
+          <Route path='/about' component={AboutScreen} exact />
         </Container>
       </main>
       <Footer />

@@ -27,12 +27,19 @@ const Header = () => {
             <Nav className='ml-auto'>
               {userInfoFromStorage ? (
                 <NavDropdown
-                  className='text-uppercase'
+                  className='text-capitalize'
                   title={userInfoFromStorage.name}
                   id='username'
                 >
                   <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
+                    Log Out
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    onClick={() => {
+                      history.push('/about');
+                    }}
+                  >
+                    about
                   </NavDropdown.Item>
                 </NavDropdown>
               ) : (
